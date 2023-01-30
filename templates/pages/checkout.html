@@ -1,12 +1,21 @@
+---
+cart: true
+---
 {{#partial "head"}}
 
 {{{ checkout.checkout_head }}}
 {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
 {{ getFontsCollection }}
 
+<!-- Use Stencil data to load alternative locale regime -->
+{{#if cart.sub_total.currency '===' 'THB'}}
+    {{> components/i18n/thai-checkout }}
+{{else}}
 <script type="text/javascript">
-    window.language = {{{langJson 'optimized_checkout'}}};
+    // Built-in language translation based on default or browser locale
+    window.language = {{{langJson 'optimized_checkout'}}}
 </script>
+{{/if}}
 
 {{{head.scripts}}}
 
