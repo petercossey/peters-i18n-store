@@ -1,3 +1,10 @@
+{{#if page_type '===' 'category'}}
+<style>
+    .pagination-list {
+        display: none;
+    }
+</style>
+{{/if}}
 {{#if banners.bottom}}
     {{#if settings.data_tag_enabled}}
         <div class="banners" data-banner-location="bottom">

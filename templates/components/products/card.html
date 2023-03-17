@@ -146,7 +146,12 @@
                href="{{url}}"
                {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
             >
-                {{name}}
+            {{#filter custom_fields 'display_name_en' property='name'}}
+                <span class="display-name" lang="en">{{value}}</span>
+            {{/filter}}
+            {{#filter custom_fields 'display_name_ar' property='name'}}
+                <span class="display-name" lang="ar">{{value}}</span>
+            {{/filter}}
             </a>
         </h3>
 

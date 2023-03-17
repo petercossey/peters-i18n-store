@@ -3,6 +3,7 @@ import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
+import InfiniteScroll from 'infinite-scroll';
 
 export default class Category extends CatalogPage {
     constructor(context) {
@@ -46,6 +47,17 @@ export default class Category extends CatalogPage {
         $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
 
         this.ariaNotifyNoProducts();
+
+        function setupInfiniteScroll() {
+            const elem = document.querySelector('.productGrid');
+            const infScroll = new InfiniteScroll(elem, {
+                path: '.pagination-item--next .pagination-link',
+                append: '.product',
+                history: false,
+            });
+            return infScroll;
+        }
+        setupInfiniteScroll();
     }
 
     ariaNotifyNoProducts() {
