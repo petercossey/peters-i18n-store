@@ -65,5 +65,30 @@
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
         {{{footer.scripts}}}
+        <script>
+        // Proof-of-concept only. It may be better to rely on the lang attribute from the HTML element.
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const language = window.navigator.userLanguage || window.navigator.language;
+            if (language === 'ar') {
+                document.body.classList.add('show-ar');
+            } else {
+                document.body.classList.add('show-en');
+            }
+        });
+        </script>
+        <style>
+            body.show-ar .card-title .display-name:lang(ar) {
+                display: inline;
+            }
+            body.show-ar .card-title .display-name:lang(en) {
+                display: none;
+            }
+            body:not(.show-ar) .card-title .display-name:lang(ar) {
+                display: none;
+            }
+            body:not(.show-ar) .card-title .display-name:lang(en) {
+                display: inline;
+            }
+        </style>
     </body>
 </html>
